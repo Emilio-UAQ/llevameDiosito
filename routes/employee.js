@@ -7,7 +7,7 @@ employee.post("/add", async (req, res, next) => {
     const { employee_name, employee_lastnames, employee_phone, employee_email, employee_address } = req.body;
 
     if (employee_name && employee_lastnames && employee_phone && employee_email && employee_address) {
-        let query = "INSERT INTO employees (employee_name, employee_lastnames, employee_phone, employee_email, employee_address) ";
+        let query = "INSERT INTO employee (employee_name, employee_lastnames, employee_phone, employee_email, employee_address) ";
         query += `VALUES ('${employee_name}', '${employee_lastnames}', '${employee_phone}', '${employee_email}', '${employee_address}')`;
 
         const rows = await db.query(query);
@@ -24,7 +24,7 @@ employee.patch("/edit", async (req, res, next) => {
     const { employee_id, employee_name, employee_lastnames, employee_phone, employee_email, employee_address } = req.body;
 
     if (employee_id && employee_name && employee_lastnames && employee_phone && employee_email && employee_address) {
-        let query = `UPDATE employees SET employee_name='${employee_name}', employee_lastnames='${employee_lastnames}',`;
+        let query = `UPDATE employee SET employee_name='${employee_name}', employee_lastnames='${employee_lastnames}',`;
         query += `employee_phone='${employee_phone}', employee_email='${employee_email}', employee_address='${employee_address}' WHERE employee_id=${employee_id}`;
 
         const rows = await db.query(query);
@@ -38,11 +38,10 @@ employee.patch("/edit", async (req, res, next) => {
 });
 
 employee.delete("/delete", async (req, res, next) => {
-  console.log("d");
     const { employee_id } = req.body;
 
     if (employee_id) {
-        const query = `DELETE FROM employees WHERE employee_id=${employee_id}`;
+        const query = `DELETE FROM employee WHERE employee_id=${employee_id}`;
         const rows = await db.query(query);
 
         if (rows.affectedRows == 1) {
@@ -56,7 +55,7 @@ employee.delete("/delete", async (req, res, next) => {
 employee.post("/search", async (req, res) => {
     const { employee_name } = req.body.data;
     if (employee_name) {
-        const query = ` SELECT * FROM employees WHERE employee_name='${employee_name}';`;
+        const query = ` SELECT * FROM employee WHERE employee_name='${employee_name}';`;
         const rows = await db.query(query);
 
         if (rows.length > 0) {
@@ -68,7 +67,7 @@ employee.post("/search", async (req, res) => {
 });
 
 employee.get("/", async (req, res, next) => {
-    const emp = await db.query("SELECT * FROM employees");
+    const emp = await db.query("SELECT * FROM employee");
     return res.status(200).json({ code: 200, message: emp });
 });
 

@@ -22,7 +22,6 @@ user.post('/signin', async (req, res, next) => {
 });
 
 user.post('/login', async (req, res, next) => {
-  console.log("f");
   const { user_mail, user_password } = req.body;
   const query = `SELECT * FROM user WHERE user_mail='${user_mail}' AND user_password='${user_password}';`;
   const rows = await db.query(query);

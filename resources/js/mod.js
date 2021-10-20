@@ -2,6 +2,9 @@ window.onload = init;
 function init(){
 
     if(localStorage.getItem("token")){
+          headers = {
+              'Authorization': "bearer " + localStorage.getItem("token")
+          }
         document.querySelector('.btn-primary').addEventListener('click', edit);
         document.querySelector('.btn-secondary').addEventListener('click', function() {
           window.location.href = "menu.html"

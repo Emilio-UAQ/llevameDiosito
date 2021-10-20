@@ -4,10 +4,9 @@ var url = "http://localhost:3000";
 
 function init() {
   if (localStorage.getItem("token")) {
-    headers = {
-      headers: {
-        'Authorization': "bearer " + localStorage.getItem("token")
-      }
+        headers = {
+            'Authorization': "bearer " + localStorage.getItem("token")
+        }
     };
     document.querySelector('.add').addEventListener('click', function() {
       window.location.href = "add.html"
