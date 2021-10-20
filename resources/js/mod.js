@@ -20,21 +20,21 @@ function init(){
 };
 
 function edit(){
-    var id = document.getElementById('id').value;
-    var name = document.getElementById('name').value;
-    var lastnames = document.getElementById('lastnames').value;
-    var phone = document.getElementById('phone').value;
-    var email = document.getElementById('email').value;
-    var address = document.getElementById('address').value;
+    var id = document.getElementById('input-id').value;
+    var name = document.getElementById('input-name').value;
+    var lastname = document.getElementById('input-lastname').value;
+    var phone = document.getElementById('input-phone').value;
+    var mail = document.getElementById('input-mail').value;
+    var address = document.getElementById('input-address').value;
 
-    console.log(id, name, lastnames, phone, email, address);
+    console.log(id, name, lastname, phone, mail, address);
 
     axios.patch('http://localhost:3000/routes/employee/edit', {
             employee_id : id,
             employee_name : name,
-            employee_lastnames: lastnames,
+            employee_lastnames: lastname,
             employee_phone: phone,
-            employee_email: email,
+            employee_email: mail,
             employee_address: address
         }, {headers:headers}).then(function(res) {
         console.log(res);
