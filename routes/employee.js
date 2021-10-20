@@ -53,7 +53,7 @@ employee.delete("/delete", async (req, res, next) => {
 });
 
 employee.post("/search", async (req, res) => {
-    const { employee_name } = req.body.data;
+    const { employee_name } = req.body;
     if (employee_name) {
         const query = ` SELECT * FROM employee WHERE employee_name='${employee_name}';`;
         const rows = await db.query(query);

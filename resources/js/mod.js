@@ -29,20 +29,16 @@ function edit(){
 
     console.log(id, name, lastnames, phone, email, address);
 
-    axios({
-        method: 'patch',
-        url: 'http://localhost:3000/routes/employee/edit',
-        data: {
+    axios.patch('http://localhost:3000/routes/employee/edit', {
             employee_id : id,
             employee_name : name,
             employee_lastnames: lastnames,
             employee_phone: phone,
             employee_email: email,
             employee_address: address
-        }
-    }).then(function(res) {
+        }, {headers:headers}).then(function(res) {
         console.log(res);
-        alert("Employee updated successfully");
+        alert("Información de empleado actualizada exitosamente");
         window.location.href = "menu.html"
     }).catch(function(err){
         console.log(err);
